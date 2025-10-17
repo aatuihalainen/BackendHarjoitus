@@ -44,7 +44,10 @@ namespace BackendHarjoitus.Repositories
 
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .OrderByDescending(i => i.Id)
+                .Take(10)
+                .ToListAsync();
         }
 
         public async Task<bool> UpdateUserAsync(User user)
