@@ -81,9 +81,12 @@ namespace BackendHarjoitus.Services
                 return false;
             }
 
+            _authenticationService.CreateUserCredentials(user);
+            dbUser.Salt = user.Salt;
+            dbUser.Password = user.Password;
             dbUser.FirstName = user.FirstName;
             dbUser.LastName = user.LastName;
-            dbUser.Password = user.Password;
+
             return await _repository.UpdateUserAsync(dbUser);
         }
 

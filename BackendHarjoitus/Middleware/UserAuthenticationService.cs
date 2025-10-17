@@ -55,8 +55,6 @@ namespace BackendHarjoitus.Middleware
             user.Password = hashedPassword;
             user.Salt = salt;
             return user;
-
-
         }
 
         public async Task<bool> IsMyMessage(string username, long messageId)

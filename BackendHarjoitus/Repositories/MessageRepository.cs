@@ -60,16 +60,6 @@ namespace BackendHarjoitus.Repositories
 
         public async Task<bool> UpdateMessageAsync(Message message)
         {
-
-            Message? dbMessage = _context.Messages.FirstOrDefault(i => i.Id == message.Id);
-            if (dbMessage == null)
-            {
-                return false;
-            }
-
-            dbMessage.Title = message.Title;
-            dbMessage.Contents = message.Contents;
-
             try
             {
                 await _context.SaveChangesAsync();

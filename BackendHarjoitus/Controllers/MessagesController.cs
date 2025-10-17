@@ -64,6 +64,7 @@ namespace BackendHarjoitus.Controllers
         public async Task<IActionResult> PutMessage(long id, MessageDTO message)
         {
             string username = this.User.FindFirst(ClaimTypes.Name).Value;
+            message.Id = id;
             if (!await _userAuthenticationService.IsMyMessage(username, id)){
                 return Unauthorized();
             }

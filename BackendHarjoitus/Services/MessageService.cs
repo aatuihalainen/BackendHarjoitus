@@ -53,11 +53,14 @@ namespace BackendHarjoitus.Services
 
         public async Task<bool> UpdateMessageAsync(MessageDTO message)
         {
-            Message? oldMessage = await _repository.GetMessageAsync(message.Id);
-            if(oldMessage == null)
+            Message? dbMessage = await _repository.GetMessageAsync(message.Id);
+            if (dbMessage == null)
             {
                 return false;
             }
+
+            dbMessage.Title = message.Title;
+            dbMessage.Contents = message.Contents;
 
             return await _repository.UpdateMessageAsync(await DTOToMessageAsync(message));
         }
